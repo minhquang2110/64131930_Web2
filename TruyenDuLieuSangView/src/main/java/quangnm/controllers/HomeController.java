@@ -54,4 +54,47 @@ public class HomeController{
 		return "loginPage";
 	}
 	
+	@GetMapping("/bmi")
+	public String bmiHandler() {
+		return "bmiPage";
+	}
+
+	@GetMapping("/bmiGet")
+	public String bmiGet(@RequestParam("height") float height,@RequestParam("weight") float weight,Model model) {
+		float resultCalculation=(float) (weight/(Math.pow(height/100,2)));
+		String result;
+		if(resultCalculation>=40) result="Béo phì cấp độ III";
+		else
+			if(resultCalculation>=30) result="Béo phì cấp độ II";
+			else 
+				if(resultCalculation>=25) result="Béo phì cấp độ I";
+				else 
+					if(resultCalculation>=23) result="Thừa cân";
+					else
+						if(resultCalculation>18.5) result="Bình thường";
+						else result="Gầy";
+		model.addAttribute("result",result);
+		model.addAttribute("resultCalculation",resultCalculation);
+		return "bmiPage";
+	}
+	
+	@PostMapping("/bmiPost")
+	public String bmiPost(@RequestParam("height") float height,@RequestParam("weight") float weight,Model model) {
+		float resultCalculation=(float) (weight/(Math.pow(height/100,2)));
+		String result;
+		if(resultCalculation>=40) result="Béo phì cấp độ III";
+		else
+			if(resultCalculation>=30) result="Béo phì cấp độ II";
+			else 
+				if(resultCalculation>=25) result="Béo phì cấp độ I";
+				else 
+					if(resultCalculation>=23) result="Thừa cân";
+					else
+						if(resultCalculation>18.5) result="Bình thường";
+						else result="Gầy";
+		model.addAttribute("result",result);
+		model.addAttribute("resultCalculation",resultCalculation);
+		return "bmiPage";
+	}
+	
 }
