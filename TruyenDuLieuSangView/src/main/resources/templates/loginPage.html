@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url(https://i.pinimg.com/474x/0a/2a/91/0a2a9163795b1cf10297e9b2eac3cc81.jpg);
+        }
+
+        .title {
+            text-align: center;
+            font-size: 35px;
+        }
+
+        .login {
+            width: 400px;
+            border-radius: 20px;
+            background: transparent;
+            backdrop-filter: blur(15px) brightness(80%);
+            padding: 20px;
+            color: white;
+        }
+
+        .email,
+        .password {
+            border-bottom: 1px solid white;
+            color: white;
+            position: relative;
+            padding-bottom: 15px;
+            margin-top: 80px;
+            font-size: 20px;
+        }
+
+        .email label,
+        .password label {
+            position: absolute;
+            left: 0;
+            bottom: 18px;
+        }
+
+        .email i,
+        .password i {
+            font-size: 25px;
+            position: absolute;
+            right: 0;
+            bottom: 100%
+        }
+
+
+        #inp-email,
+        #inp-password {
+            width: 100%;
+            position: absolute;
+            background: transparent;
+            border: none;
+            outline: none;
+            left: 0;
+            bottom: 20px;
+            font-size: 20px;
+            color: white;
+        }
+
+        .extra-function {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            margin: 15px 0;
+            font-size: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .inp {
+            width: 100%;
+            padding: 10px;
+            border-radius: 20px;
+            border: none;
+            background: white;
+        }
+
+        .btn .inp {
+            font-size: 20px;
+        }
+
+        .sign-up {
+            text-align: center;
+            color: white;
+            margin: 20px 0 40px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <form class="login" method="post" action="profile">
+        <div class="title">LOGIN</div>
+        <div class="email">
+            <input type="text" id="inp-email" name="email">
+            <label>Email</label>
+            <i class='bx bx-envelope'></i>
+        </div>
+        <div class="password">
+            <input type="password" id="inp-password" name="password">
+            <label>Password</label>
+            <i class='bx bx-lock-alt' id="lock-password"></i>
+        </div>
+        <div class="extra-function">
+            <div class="remember-me">
+                <input type="checkbox">
+                Remember Me
+            </div>
+            <a href="">Forgot Password</a>
+        </div>
+        <div class="btn">
+            <input type="submit" value="Login" class="inp">
+        </div>
+        <div class="sign-up">
+            <p>Don't have an account? <a href="">Sign Up</a></p>
+        </div>
+    </form>
+</body>
+<script>
+    var lock = document.querySelector("#lock-password")
+    lock.addEventListener("click", function () {
+        var password = document.querySelector("#inp-password")
+        if (password.type == "password") {
+            password.type = "name";
+            lock.classList.replace("bx-lock-alt", "bx-lock-open-alt")
+        } else {
+            password.type = "password";
+            lock.classList.replace("bx-lock-open-alt", "bx-lock-alt")
+        }
+    })
+    function change(text, tag) {
+        var inp = document.querySelector(text)
+        inp.addEventListener("input", function (e) {
+            if (e.target.value === "") {
+                var mail = document.querySelector(tag + " label")
+                mail.style.transform = "translateY(-150%)";
+                mail.style.transition = "0.5s";
+            }
+        })
+        inp.addEventListener("focus", function (e) {
+            if (document.hasFocus() === true) {
+                if (e.target.value === "") {
+                    var mail = document.querySelector(tag + " label")
+                    mail.style.transform = "translateY(-150%)";
+                    mail.style.transition = "0.5s";
+                }
+            }
+        })
+        inp.addEventListener("blur", function (e) {
+            if (e.target.value === "") {
+                var mail = document.querySelector(tag + " label")
+                mail.style.transform = "unset";
+                mail.style.transition = "0.5s";
+            }
+        })
+
+    }
+    change("#inp-email", ".email")
+    change("#inp-password", ".password")
+</script>
+
+</html>
