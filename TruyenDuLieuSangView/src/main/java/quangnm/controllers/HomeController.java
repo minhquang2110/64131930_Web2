@@ -1,5 +1,4 @@
 package quangnm.controllers;
-import java.lang.ProcessBuilder.Redirect;
 import java.util.ArrayList;
 
 import org.springframework.stereotype.Controller;
@@ -38,16 +37,20 @@ public class HomeController{
 	@PostMapping("/profile")
 	public String profilePost(@RequestParam("email") String email,@RequestParam("password") String password,Model model) {
 		if(email.equals("minhquang")&&password.equals("12345")) {
-			return("profilePage");
+			Personal personal=new Personal("64131930", "Nguyễn Minh Quang", 2004, true);
+			model.addAttribute("personal",personal);
+			return("index");
 		}
 		return "loginPage";
 	}
 	@GetMapping("/profile")
 	public String profileGet(@RequestParam("email") String email,@RequestParam("password") String password,Model model) {
 		if(email.equals("minhquang")&&password.equals("12345")) {
-			return("profilePage");
+			Personal personal=new Personal("64131930", "Nguyễn Minh Quang", 2004, true);
+			model.addAttribute("personal",personal);
+			return("index");
 		}
-		return("profilePage");
+		return("loginPage");
 	}
 	@GetMapping("/login")
 	public String loginHandler() {
