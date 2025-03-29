@@ -1,15 +1,34 @@
 package quangnm.controllers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import quangnm.models.Personal;
 
 @Controller
 public class HomeController{
+	ArrayList<Personal> dsSinhVien=new ArrayList<Personal>(Arrays.asList(
+			new Personal("64131930", "Nguyễn Minh Quang", 8.7),
+			new Personal("64131931", "Trần Thị Lan", 7.5),
+			new Personal("64131932", "Phạm Văn Hùng", 6.2),
+			new Personal("64131933", "Lê Minh Tuấn", 9.0),
+			new Personal("64131934", "Hoàng Thị Mai", 5.8),
+			new Personal("64131935", "Đoàn Ngọc Sơn", 6.5),
+			new Personal("64131936", "Vũ Thị Thanh", 7.0),
+			new Personal("64131937", "Ngô Minh Tiến", 8.0),
+			new Personal("64131938", "Bùi Thị Nhung", 7.9),
+			new Personal("64131939", "Dương Minh Hoàng", 6.8)
+			)
+
+	);
+	
+	
 	@GetMapping("/")
 	public String home() {
 		return "homePage";
@@ -22,25 +41,19 @@ public class HomeController{
 	}
 	@GetMapping("/list")
 	public String getList(Model model) {
-		ArrayList<Personal> dsSinhVien=new ArrayList<Personal>();
-		dsSinhVien.add(new Personal("64131930", "Nguyễn Minh Quang", 2004, true));
-		dsSinhVien.add(new Personal("64131931", "Trần Thị Lan", 2003, false));
-		dsSinhVien.add(new Personal("64131932", "Phạm Văn Hùng", 2005, true));
-		dsSinhVien.add(new Personal("64131933", "Lê Minh Tuấn", 2004, true));
-		dsSinhVien.add(new Personal("64131934", "Hoàng Thị Mai", 2003, false));
-		dsSinhVien.add(new Personal("64131935", "Đoàn Ngọc Sơn", 2002, true));
-		dsSinhVien.add(new Personal("64131936", "Vũ Thị Thanh", 2005, true));
-		dsSinhVien.add(new Personal("64131937", "Ngô Minh Tiến", 2004, false));
-		dsSinhVien.add(new Personal("64131938", "Bùi Thị Nhung", 2003, true));
-		dsSinhVien.add(new Personal("64131939", "Dương Minh Hoàng", 2005, false));
-		dsSinhVien.add(new Personal("64131940", "Dương Minh Hoàng", 2005, false));
-		dsSinhVien.add(new Personal("64131941", "Dương Minh Hoàng", 2005, false));
 		model.addAttribute("dsSV",dsSinhVien);
 		model.addAttribute("content","list");
 		return "homePage";
 	}
 	@GetMapping("/add")
-	public String getAdd(Model model) {
+	public String addNew(Model model) {
+		model.addAttribute("content","addNew");
+		return "homePage";
+	}
+	@PostMapping("/addGet")
+	public String getAdd(@RequestParam(name="hoTen") String hoTen,@RequestParam(name="dtb") Double dtb,Model model) {
+		String id=String.format("%03d", dsSinhVien.size());
+		dsSinhVien.add(new Personal("SV"+id, hoTen, dtb));
 		model.addAttribute("content","addNew");
 		return "homePage";
 	}

@@ -90,26 +90,17 @@ body {
 </head>
 <body>
 <div class="signup-form">
-    <form action="/examples/actions/confirmation.php" method="post">
+    <form action="addGet" method="post">
 		<h2>ADD NEW STUDENT</h2>
-        <div class="form-group">
-			<div class="row">
-				<div class="col"><input type="text" class="form-control" name="first_name" placeholder="First Name" required="required"></div>
-				<div class="col"><input type="text" class="form-control" name="last_name" placeholder="Last Name" required="required"></div>
-			</div>        	
-        </div>
-        <div class="form-group">
-        	<input type="email" class="form-control" name="email" placeholder="Email" required="required">
+		<div class="form-group">
+            <input type="text" class="form-control" name="hoTen" placeholder="Họ tên" required="required">
         </div>
 		<div class="form-group">
-            <input type="password" class="form-control" name="password" placeholder="Password" required="required">
-        </div>
-		<div class="form-group">
-            <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required="required">
+            <input type="number" class="form-control" name="dtb" placeholder="Điểm trung bình" required="required" min="0" max="10" step="0.1">
         </div>        
        
 		<div class="form-group">
-            <button type="submit" class="btn btn-success btn-lg btn-block">Register Now</button>
+            <button type="submit" class="btn btn-success btn-lg btn-block">Đăng ký</button>
         </div>
     </form>
 </div>

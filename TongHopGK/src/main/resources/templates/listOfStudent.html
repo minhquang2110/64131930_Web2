@@ -9,7 +9,6 @@
       margin: 0;
       padding: 0;
       background-color: #f4f4f4;
-      
     }
 
     table {
@@ -17,6 +16,7 @@
       border-collapse: collapse;
       background-color: #fff;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-top:20px;
     }
 
     th, td {
@@ -50,17 +50,15 @@
 </head>
 <body>
 	<table>
-    <tr>
+    <tr style="position: -webkit-sticky;position: sticky;top:0">
       <th>MSSV</th>
-      <th>Name</th>
-      <th>Year of birth</th>
-      <th>Gender</th>
+      <th>Họ và tên</th>
+      <th>Điểm trung bình</th>
     </tr>
     <tr th:each="user : ${dsSV}" th:object="${user}" >
       <td th:text="*{getMSSV()}"></td>
       <td th:text="*{getHoTen()}"></td>
-      <td th:text="*{getNamSinh()}"></td>
-      <td th:text="*{getGioiTinh()}"></td>
+      <td th:text="*{getDTB()}"></td>
     </tr>
   </table>
 </body>

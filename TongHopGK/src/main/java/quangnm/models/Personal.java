@@ -2,14 +2,12 @@ package quangnm.models;
 
 public class Personal {
     private String MSSV, hoTen;
-    private int namSinh;
-    private boolean gioiTinh;
+    private double dtb;
 
-    public Personal(String MSSV, String hoTen, int namSinh, boolean gioiTinh) {
+    public Personal(String MSSV, String hoTen, double d) {
         this.MSSV = MSSV;
         this.hoTen = hoTen;
-        this.namSinh = namSinh;
-        this.gioiTinh = gioiTinh;
+        this.dtb = d;
     }
 
     public String getMSSV() {
@@ -20,16 +18,10 @@ public class Personal {
         return hoTen;
     }
 
-    public int getNamSinh() {
-        return namSinh;
+    public double getDTB() {
+        return dtb;
     }
 
-    public String getGioiTinh() {
-        if(this.gioiTinh==true) {
-        	return "Nam";
-        }else {
-        	return "Nữ";
-        }
-    }
+    
 }
 

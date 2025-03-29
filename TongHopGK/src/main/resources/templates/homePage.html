@@ -143,7 +143,6 @@
 
 <body>
 
-    <!-- Header -->
     <header class="p-0">
         <div class="container m-0 p-0" style="width: 100vw;">
             <img src="https://i.pinimg.com/736x/08/43/c1/0843c18d3c4b9753019508274ca2704e.jpg" width="auto"
@@ -196,7 +195,7 @@
                     <div th:case="profile" style="height: 100%">
                         <div th:replace="~{aboutMe::aboutMe}"></div>
                     </div>
-                    <div th:case="list">
+                    <div th:case="list" style="display: flex; justify-content: center;">
                         <div th:replace="~{listOfStudent::list}"></div>
                     </div>
                     <div th:case="addNew">
@@ -205,7 +204,6 @@
                 </th:block>
             </div>
 
-            <!-- Sidebar -->
             <div class="col-md-3 sidebar d-flex flex-column align-items-center">
                 <div class="mb-3">
                     <img src="https://i.pinimg.com/474x/33/95/74/33957440b03da5a530fbe90b8c0b955f.jpg" width="150"
@@ -217,9 +215,8 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Dashboard. All Rights Reserved.</p>
+        <p>Nguyễn Minh Quang-64131930</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
