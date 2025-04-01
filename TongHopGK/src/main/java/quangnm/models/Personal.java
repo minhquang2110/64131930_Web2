@@ -21,7 +21,14 @@ public class Personal {
     public double getDTB() {
         return dtb;
     }
-
-    
+    public void setMSSV(String id) {
+        MSSV=id;
+    }
+    public void setHoTen(String hoTen) {
+        this.hoTen=hoTen;
+    }
+    public void setDiem(double diem) {
+        this.dtb=diem;
+    }
 }
 

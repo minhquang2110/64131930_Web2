@@ -57,4 +57,17 @@ public class HomeController{
 		model.addAttribute("content","addNew");
 		return "homePage";
 	}
+	@PostMapping("/save")
+	public String saveInfor(@RequestParam(name="mssv") String id,@RequestParam(name="name") String name,@RequestParam(name="diem") double diem,Model model) {
+		for (Personal personal : dsSinhVien) {
+			if(personal.getMSSV().equals(id)) {
+				personal.setHoTen(name);
+				personal.setDiem(diem);
+				break;
+			}else {
+				continue;
+			}
+		}
+		return "redirect:/list";
+	}
 }

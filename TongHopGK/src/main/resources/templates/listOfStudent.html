@@ -46,20 +46,110 @@
     th, td {
       font-size: 18px;
     }
-    </style>
+
+    input {
+      padding: 6px;
+      font-size: 16px;
+      width: 100%;
+    }
+</style>
 </head>
 <body>
 	<table>
-    <tr style="position: -webkit-sticky;position: sticky;top:0">
+	<tr style="position: -webkit-sticky;position: sticky;top:0">
       <th>MSSV</th>
       <th>Họ và tên</th>
       <th>Điểm trung bình</th>
+      <th>Chức năng</th>
     </tr>
-    <tr th:each="user : ${dsSV}" th:object="${user}" >
-      <td th:text="*{getMSSV()}"></td>
-      <td th:text="*{getHoTen()}"></td>
-      <td th:text="*{getDTB()}"></td>
-    </tr>
+    <tr th:each="user : ${dsSV}" th:object="${user}" id="row-[[${user.mssv}]]">
+		  <td th:text="*{getMSSV()}"></td>
+		  <td th:text="*{getHoTen()}"></td>
+		  <td th:text="*{getDTB()}"></td>
+		  <td>
+		    <button th:attr="data-id=*{getMSSV()}" onclick="editUser(event)" style="background-color: #4CAF50; color: white; padding: 8px 16px; border: none; cursor: pointer;">Sửa</button>
+		    <button th:attr="data-id=*{getMSSV()}" onclick="deleteUser(event)" style="background-color: #f44336; color: white; padding: 8px 16px; border: none; cursor: pointer;">Xóa</button>
+		  </td>
+		</tr>
+
   </table>
+
+
+  <script>
+  function editUser(event) {
+	  const row = event.target.closest('tr');
+	  const mssvCell = row.cells[0];
+	  const nameCell = row.cells[1];
+	  const gpaCell = row.cells[2];
+
+	  const mssv = mssvCell.textContent;
+	  const name = nameCell.textContent;
+	  const gpa = gpaCell.textContent;
+
+	  mssvCell.innerHTML = `<input type="text" value="${mssv}" disabled name="mssv"/>`; 
+	  nameCell.innerHTML = `<input type="text" value="${name}" name="name"/>`;
+	  gpaCell.innerHTML = `<input type="text" value="${gpa}" name="diem"/>`;
+
+	  const nameInput = nameCell.querySelector('input[name="name"]');
+	    const gpaInput = gpaCell.querySelector('input[name="diem"]');
+
+	    nameInput.addEventListener('input', function() {
+	        updateFormInputs(mssv, nameInput.value, gpaInput.value);
+	    });
+
+	    gpaInput.addEventListener('input', function() {
+	        updateFormInputs(mssv, nameInput.value, gpaInput.value);
+	    });
+
+	    const actionCell = row.cells[3];
+	    actionCell.innerHTML = `
+	        <form method="POST" action="/save" onsubmit="submitForm(event)">
+	            <input type="hidden" name="mssv" value="${mssv}" />
+	            <input type="hidden" name="name" value="${name}" />
+	            <input type="hidden" name="diem" value="${gpa}" />
+	            <button type="submit" style="background-color: #4CAF50; color: white; padding: 8px 16px; border: none; cursor: pointer;">Lưu</button>
+	            <button type="button" onclick="cancelEdit(event)" style="background-color: #f44336; color: white; padding: 8px 16px; border: none; cursor: pointer;">Hủy</button>
+	        </form>
+	    `;
+	}
+
+	function updateFormInputs(mssv, name, gpa) {
+	    const form = document.querySelector('form[action="/save"]');
+	    if (form) {
+	        form.querySelector('input[name="mssv"]').value = mssv;
+	        form.querySelector('input[name="name"]').value = name;
+	        form.querySelector('input[name="diem"]').value = gpa;
+	    }
+	}
+
+
+
+    function cancelEdit(event) {
+      const row = event.target.closest('tr');
+      location.reload(); 
+    }
+
+    function deleteUser(event) {
+      const row = event.target.closest('tr');
+      const mssv = row.cells[0].textContent;
+
+      fetch(`/delete/${mssv}`, {
+        method: 'DELETE',
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          alert('Xóa thành công!');
+          row.remove();  
+        } else {
+          alert('Xóa không thành công!');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Có lỗi xảy ra!');
+      });
+    }
+  </script>
 </body>
 </html>
