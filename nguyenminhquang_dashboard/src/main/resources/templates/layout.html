@@ -55,17 +55,18 @@
             color: #343a40 !important;
         }
 
-        .sidebar {
-		    background-color: #343a40;
-		    color: white;
-		    padding: 20px;
-		    width: 250px;
-		    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-		    position: absolute;
-		    left: 0;  
-		    top: 0;  
-		    height: 100vh;  
-		}
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;  
+    width: 250px;
+    height: 100vh; 
+    background-color: #343a40;
+    color: white;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
 
 
         .sidebar h3 {
@@ -110,12 +111,13 @@
 		}
 
         .main-content {
-            flex: 1;
-            overflow: scroll;
-            height: 100%;
-            background-color: transparent;
-            padding:0;
-        }
+    flex: 1;
+    padding: 20px;
+    background-color: transparent;
+    overflow-y: auto;
+    padding-left: 270px; /* Thêm khoảng cách cho sidebar ở bên trái */
+}
+
         
         .main-content::-webkit-scrollbar { 
 		    display: none; 
@@ -151,6 +153,46 @@
             transform: translateY(-10px);
             transition: transform 0.3s ease-in-out;
         }
+        body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container-fluid {
+    display: flex; 
+    height: 100%;
+}
+
+.main-content {
+    flex: 1;  
+    padding: 20px;
+    background-color: transparent;
+    overflow-y: auto; 
+    padding-left: 270px; 
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px; 
+    height: 100vh; 
+    background-color: #343a40;
+    color: white;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.row {
+    display: flex;
+    width: 100%;
+}
+        
     </style>
 </head>
 
@@ -173,40 +215,17 @@
         </div>
     </header>
 
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container m-0">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item">
-                        <a class="nav-link">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/aboutMe}">About Me</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/list}">List</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/add}">Add new</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+   
 
     <div class="container-fluid">
         <div class="row d-flex" style="height:100%">
             <div class="col-md-9 main-content">
                 <th:block th:switch="${content}">
-                    <div th:case="profile" style="height: 100%">
-                        <div th:replace="~{aboutMe::aboutMe}"></div>
+                    <div th:case="pageList" style="height: 100%">
+                        <div th:replace="~{page::listPage}"></div>
                     </div>
-                    <div th:case="list" style="display: flex; justify-content: center;">
-                        <div th:replace="~{listOfStudent::list}"></div>
+                    <div th:case="pageAdd" style="display: flex; justify-content: center;">
+                        <div th:replace="~{pageAdd::addNew}"></div>
                     </div>
                     <div th:case="addNew">
                         <div th:replace="~{addNew::addNew}"></div>
@@ -221,8 +240,8 @@
                 </div>
                 <h3 class="text-center"></h3>
 				<ul>
-			        <li><a class="nav-link" th:href="@{/get}">Page-List</a></li>
-			        <li><a class="nav-link" th:href="@{/aboutMe}">Page-Addnew</a></li>
+			        <li><a class="nav-link" th:href="@{/page/all}">Page-List</a></li>
+			        <li><a class="nav-link" th:href="@{/page/add}">Page-Addnew</a></li>
 			        <li><a class="nav-link" th:href="@{/aboutMe}">Page-List</a></li>
 			        <li><a class="nav-link" th:href="@{/aboutMe}">Page-Addnew</a></li>
 			    </ul>
