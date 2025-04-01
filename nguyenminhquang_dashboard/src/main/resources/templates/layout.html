@@ -200,18 +200,7 @@
 
     <header class="p-0">
         <div class="container m-0 p-0" style="width: 100vw;">
-            <img src="https://i.pinimg.com/736x/08/43/c1/0843c18d3c4b9753019508274ca2704e.jpg" width="auto"
-                height="100px">
-            <img src="https://i.pinimg.com/736x/fc/d1/50/fcd15099c68fa9895e151ad2ec141f30.jpg" width="auto"
-                height="100px">
-            <img src="https://i.pinimg.com/736x/9a/0d/1d/9a0d1d89dc7dc6aebd033f19061e2ace.jpg" width="auto"
-                height="100px">
-            <img src="https://i.pinimg.com/474x/a4/b3/d9/a4b3d959e5747174673a1e252da16659.jpg" width="auto"
-                height="100px">
-            <img src="https://i.pinimg.com/474x/09/d3/fe/09d3fec38e70a837fd1393c6ee278237.jpg" width="auto"
-                height="100px">
-            <img src="https://i.pinimg.com/474x/eb/a9/c6/eba9c6465960b4c8a6c4dbfae5a588ee.jpg" width="auto"
-                height="100px">
+           <h1>Nguyễn Minh Quang</h1>
         </div>
     </header>
 
@@ -230,6 +219,13 @@
                     <div th:case="addNew">
                         <div th:replace="~{addNew::addNew}"></div>
                     </div>
+                     <div th:case="postList" style="height: 100%">
+                        <div th:replace="~{post::listPost}"></div>
+                    </div>
+                    <div th:case="postAdd" style="display: flex; justify-content: center;">
+                        <div th:replace="~{postAdd::addNew}"></div>
+                    </div>
+                   
                 </th:block>
             </div>
 
@@ -241,16 +237,16 @@
                 <h3 class="text-center"></h3>
 				<ul>
 			        <li><a class="nav-link" th:href="@{/page/all}">Page-List</a></li>
-			        <li><a class="nav-link" th:href="@{/page/add}">Page-Addnew</a></li>
-			        <li><a class="nav-link" th:href="@{/aboutMe}">Page-List</a></li>
-			        <li><a class="nav-link" th:href="@{/aboutMe}">Page-Addnew</a></li>
+			        <li><a class="nav-link" th:href="@{/page/new}">Page-Addnew</a></li>
+			        <li><a class="nav-link" th:href="@{/post/all}">Post-List</a></li>
+			        <li><a class="nav-link" th:href="@{/post/new}">Post-Addnew</a></li>
 			    </ul>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>Nguyễn Minh Quang-64131930</p>
+        <p>2025 by Student Name - FIT.NTU</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
