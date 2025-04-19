@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/layout.css">
+</head>
+<body>
+    <div class="container">
+        <div class="main">
+            <div class="sidebar">
+                <img src="/images/Logo-Khoa-CNTT-NTU.png" alt="">
+                <div class="menu">
+                    <div><a th:href="@{/}">Dashboard</a></div>
+                    <div><a th:href="@{/page/all}">Page-List</a></div>
+                    <div><a href="/page/new">Topic-Addnew</a></div>
+                    <div><a href="/post/all">Student-list</a></div>
+                    <div><a href="/post/new">Student-Addnew</a></div>
+                </div>
+            </div>
+            <div class="center">
+                <div class="header">NguyenMinhQuang-64131930</div>
+                <div class="content">
+                <th:block th:switch="${content}">
+                    <div th:case="pageList">
+                        <div th:replace="~{/html/PageAll::listPage}"></div>
+                    </div>
+                    <div th:case="pageAdd" style="display: flex; justify-content: center;">
+                        <div th:replace="~{/html/PageAddNew::addNew}"></div>
+                    </div>
+                    <div th:case="pageDetail" style="display: flex; justify-content: center;">
+                        <div th:replace="~{/html/PageDetail::detail}"></div>
+                    </div>
+                   <div th:case="postList">
+                        <div th:replace="~{/html/PostAll::listPost}"></div>
+                    </div>
+                    <div th:case="postDetail" style="display: flex; justify-content: center;">
+                        <div th:replace="~{/html/PostDetail::detail}"></div>
+                    </div>
+                    <div th:case="postAdd" style="display: flex; justify-content: center;">
+                        <div th:replace="~{/html/PostAddNew::addNew}"></div>
+                    </div>
+                </th:block>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <h2>2025 by Student Name-FIT.NTU</h2>
+        </div>
+    </div>
+</body>
+</html>

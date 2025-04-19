@@ -1,0 +1,21 @@
+@charset "UTF-8";
+.page-detail-container{
+    width: auto;
+    height: auto;
+    background:rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    text-align: center;
+    backdrop-filter: blur(30px);
+    padding: 15px;
+    color: #fff;
+}   
+
+.page-detail-container div{
+    font-size: 40px;
+    margin-bottom:15px;
+}
+.page-detail-container .image i{
+    font-size: 150px;
+}
+

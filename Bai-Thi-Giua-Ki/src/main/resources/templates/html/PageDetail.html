@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html th:fragment="detail">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+ <link rel="stylesheet" href="/css/PageDetail.css">
+ <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+	<div class="page-detail-container" th:object="${ob}">
+        <div class="image">
+            <i class='bx bx-user-circle'></i>
+        </div>
+        <div th:utext="'Page Name: ' + *{getPageName()}"></div>
+        <div th:utext="'Key word: '+ *{getKeyword()}"></div>
+        <div th:utext="'Content: '+ *{getContent()}"></div>
+        <div th:utext="'Parent Page Id: '+ *{getParentPageId()}"></div>
+    </div>
+</body>
+</html>
